@@ -27,7 +27,7 @@ app.get('/api/imagesearch/:search', function(req, res){
   });
 
   let offset = req.query.offset * 10 || 1;
-  if(offset >= 90) {
+  if(offset >= 90 || offset < 0) {
     offset = 89;
   }
   axios.get('https://www.googleapis.com/customsearch/v1?key=AIzaSyAcFVAk3moyes4gABG5LrFl_60vS5n-vaQ&cx=009810781965235648955:uncn-ysrcl8&q=' + req.params.search + '&searchType=image' + '&start=' + offset)
