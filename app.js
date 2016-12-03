@@ -5,8 +5,12 @@ let mongoose = require('mongoose');
 require('./models/db.js');
 let SearchLog = mongoose.model('SearchLog');
 
+app.set('views', './views');
+app.set('view engine', 'pug');
+app.use(express.static('public'));
+
 app.get('/', function(req, res){
-  res.send("test");
+  res.render('index');
 });
 
 app.get('/api/logs', function(req, res){
