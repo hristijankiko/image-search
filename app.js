@@ -9,6 +9,12 @@ app.get('/', function(req, res){
   res.send("test");
 });
 
+app.get('/api/logs', function(req, res){
+  SearchLog.find(function(err, log){
+    res.json(log.reverse());
+  });
+});
+
 app.get('/api/imagesearch/:search', function(req, res){
   let date = new Date();
   SearchLog.create({
@@ -17,8 +23,6 @@ app.get('/api/imagesearch/:search', function(req, res){
   }, function(err, searchLog){
     if(err){
       console.log(err)
-    } else {
-      console.log(searchLog);
     }
   });
 
@@ -38,6 +42,7 @@ app.get('/api/imagesearch/:search', function(req, res){
       });
     });
     res.json(response);
+    //Use this to get search results
     //res.json(images.data.items);
   })
   .catch(function(err){
